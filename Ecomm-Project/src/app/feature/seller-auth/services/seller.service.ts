@@ -52,6 +52,12 @@ export class SellerService {
         this.isLoggedInError.emit(false);
       }
     });
+  }
 
+  userLogout(){
+    localStorage.removeItem('seller');
+    this._toastr.success('Successfull Logout', 'Success');
+    Swal.fire('Successfully Logged Out');
+    this._route.navigate(['/']);
   }
 }

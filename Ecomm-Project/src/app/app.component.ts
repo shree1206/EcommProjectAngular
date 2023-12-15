@@ -16,6 +16,5 @@ export class AppComponent implements OnInit {
     } else {
       console.log('Production!');
     }
-    this._seller.checkLoogedInUser();
   }
 }
