@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { signupUser } from 'src/app/types/signupUser.interface';
 import { SellerService } from './services/seller.service';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./seller-auth.component.css'],
   preserveWhitespaces: true
 })
-export class SellerAuthComponent implements OnInit {
+export class SellerAuthComponent implements OnInit, OnDestroy {
 
   fisrtName: string = '';
   lastName: string = '';
@@ -28,7 +28,7 @@ export class SellerAuthComponent implements OnInit {
       id: [0],
       fname: ['', Validators.compose([Validators.required])],
       lname: ['', Validators.compose([Validators.required])],
-      email: ['', Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
     });
 
@@ -58,11 +58,17 @@ export class SellerAuthComponent implements OnInit {
         this.reset();
         this._route.navigate(['seller-home']);
       }
+    }, error => {
+      this._toastr.error(error.message, 'Error');
     })
   }
 
   async reset() {
     this.submitted = false;
     this.signupForm.reset();
+  }
+
+  ngOnDestroy(): void {
+    this.submitted = false;
   }
 }
