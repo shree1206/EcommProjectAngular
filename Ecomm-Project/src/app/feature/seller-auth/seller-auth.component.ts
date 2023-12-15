@@ -19,15 +19,22 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
   email: string = '';
   password: string = '';
   signupForm: FormGroup;
+  loginForm: FormGroup;
   submitted: boolean = false;
 
   isloggedIn: boolean = false;
+  showLoginSection: boolean = false;
 
   constructor(private _fb: FormBuilder, private _seller: SellerService, private _toastr: ToastrService, private _route: Router) {
     this.signupForm = this._fb.group({
       id: [0],
       fname: ['', Validators.compose([Validators.required])],
       lname: ['', Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+    });
+
+    this.loginForm = this._fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
     });
@@ -44,6 +51,10 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
 
   get f() {
     return this.signupForm.controls;
+  }
+
+  get f2() {
+    return this.loginForm.controls;
   }
 
   postdata(data: signupUser): void {
@@ -68,6 +79,21 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
   async reset() {
     this.submitted = false;
     this.signupForm.reset();
+    this.loginForm.reset();
+  }
+
+  loginUser(data: signupUser): void {
+    this.submitted = true;
+  }
+
+  showLogin() {
+    this.showLoginSection = true;
+    this.submitted = false;
+  }
+
+  closeLogin() {
+    this.showLoginSection = false;
+    this.submitted = false;
   }
 
   ngOnDestroy(): void {

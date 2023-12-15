@@ -11,3 +11,8 @@
 .invalid-section{
   color: red;
 }
+
+.login-signup-link{
+  cursor:pointer;
+  color: blue;
+}
