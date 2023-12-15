@@ -13,4 +13,9 @@ export class HomeComponent {
   ngOnInit() {
     this._seller.checkLoogedInUser();
   }
+
+
+  openGitHub() : void {
+    window.open("https://github.com/shree1206/EcommProjectAngular", "_blank");
+}
 }
