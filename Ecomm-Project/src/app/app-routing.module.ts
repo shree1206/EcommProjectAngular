@@ -15,6 +15,9 @@ const routes: Routes = [
     path: 'seller-home', loadChildren: () => import('./feature/seller-home/seller-home.module').then(m => m.SellerHomeModule)
   },
   {
+    path: 'seller-add-product', loadChildren: () => import('./feature/seller-add-product/seller-add-product.module').then(m => m.SellerAddProductModule)
+  },
+  {
     path: 'logout', component: LogoutComponent
   },
   {

@@ -9,10 +9,11 @@
             <ng-container [ngSwitch]="menuType">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'default'">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" routerLink="seller-auth">Seller</a>
+                        <i class="fa fa-home text-white" aria-hidden="true" routerLink="/"
+                            style="margin-right: 7px;margin-top: 13px;"></i>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" routerLink="/">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" routerLink="seller-auth">Seller</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active text-white" aria-current="page">Login</a>
@@ -23,13 +24,10 @@
                 </ul>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'seller'">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page">Product List</a>
+                        <a class="nav-link active text-white" aria-current="page" routerLink="seller-home">Product List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page">Add Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page">Username</a>
+                        <a class="nav-link active text-white" aria-current="page" routerLink="seller-add-product">Add Product</a>
                     </li>
                 </ul>
             </ng-container>
@@ -38,6 +36,7 @@
                 <button class="btn btn-success text-white" type="submit">Search</button>
             </form>
             <ng-template #thenblock>
+                <a class="nav-link active text-white" aria-current="page">Welcome {{sellerName | titlecase}}</a>
                 <i class="fa fa-power-off text-white logout-btn" aria-hidden="true" routerLink="logout"></i>
             </ng-template>
 

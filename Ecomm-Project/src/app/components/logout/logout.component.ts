@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SellerService } from 'src/app/feature/seller-auth/services/seller.service';
 
 @Component({
@@ -8,10 +9,12 @@ import { SellerService } from 'src/app/feature/seller-auth/services/seller.servi
 })
 export class LogoutComponent {
 
-  constructor(private _seller: SellerService) { }
+  constructor(private _seller: SellerService, private _route: Router) { }
   ngOnInit() {
     if (localStorage.getItem('seller')) {
       this._seller.userLogout();
+    } else {
+      this._route.navigate(['/'])
     }
   }
 }
