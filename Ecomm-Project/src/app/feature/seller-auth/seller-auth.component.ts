@@ -39,6 +39,7 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log(this.isloggedIn);
+    this._seller.checkLoogedInUser();
   }
 
   get f() {
@@ -56,6 +57,7 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
         this._toastr.success('Successfull Event Done', 'Success');
         Swal.fire('Successfully Data Saved')
         this.reset();
+        localStorage.setItem('seller', JSON.stringify(res.body));
         this._route.navigate(['seller-home']);
       }
     }, error => {

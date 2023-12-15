@@ -1,4 +1,5 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
+import { SellerService } from './feature/seller-auth/services/seller.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component, OnInit, isDevMode } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'Ecomm-Project';
+  constructor(private _seller:SellerService){ }
 
   ngOnInit() {
     if (isDevMode()) {
@@ -14,5 +16,6 @@ export class AppComponent implements OnInit {
     } else {
       console.log('Production!');
     }
+    this._seller.checkLoogedInUser();
   }
 }

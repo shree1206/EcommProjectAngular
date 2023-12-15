@@ -14,6 +14,7 @@ export class sellerAuthGuardService {
       this.isloggedIn = res;
     });
     if (!this.isloggedIn) {
+      this.router.navigate(['seller-auth']);
       return false;
     }
     return true;
