@@ -14,6 +14,9 @@ const routes: Routes = [
     path: 'seller-auth', loadChildren: () => import('./feature/seller-auth/seller-auth.module').then(m => m.SellerAuthModule)
   },
   {
+    path: 'seller-home', loadChildren: () => import('./feature/seller-home/seller-home.module').then(m => m.SellerHomeModule)
+  },
+  {
     path: 'page-not-found', component: PageNotFoundComponent
   },
   {

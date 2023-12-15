@@ -4,6 +4,7 @@ import { signupUser } from 'src/app/types/signupUser.interface';
 import { SellerService } from './services/seller.service';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-seller-auth',
@@ -19,7 +20,7 @@ export class SellerAuthComponent implements OnInit {
   password: string = '';
   signupForm: FormGroup;
   submitted: boolean = false;
-  constructor(private _fb: FormBuilder, private _seller: SellerService, private _toastr:ToastrService) {
+  constructor(private _fb: FormBuilder, private _seller: SellerService, private _toastr: ToastrService, private _route: Router) {
     this.signupForm = this._fb.group({
       id: [0],
       fname: ['', Validators.compose([Validators.required])],
@@ -42,9 +43,10 @@ export class SellerAuthComponent implements OnInit {
     }
     this._seller.userSignup(data).subscribe((res: any) => {
       if (res) {
-        this._toastr.success('Successfull Event Done','Success');
+        this._toastr.success('Successfull Event Done', 'Success');
         Swal.fire('Successfully Data Saved')
         this.reset();
+        this._route.navigate(['seller-home']);
       }
     })
   }
