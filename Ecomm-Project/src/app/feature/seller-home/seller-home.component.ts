@@ -11,10 +11,5 @@ export class SellerHomeComponent implements OnInit {
   isloggedIn: any;
   constructor(private _seller: SellerService) { }
 
-  ngOnInit() {
-    this._seller.getValue().subscribe((res) => {
-      this.isloggedIn = res;
-      console.log(res);
-    })
-  }
+  ngOnInit() { }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { signupUser } from 'src/app/types/signupUser.interface';
 import { SellerService } from './services/seller.service';
@@ -21,7 +21,7 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
   signupForm: FormGroup;
   loginForm: FormGroup;
   submitted: boolean = false;
-
+  errorMsg: string = '';
   isloggedIn: boolean = false;
   showLoginSection: boolean = false;
 
@@ -39,7 +39,7 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
     });
 
-    this._seller.getValue().subscribe((res) => {
+    this._seller.getValue().subscribe((res: boolean) => {
       this.isloggedIn = res;
     });
   }
@@ -84,6 +84,24 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
 
   loginUser(data: signupUser): void {
     this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this._seller.userLogin(data);
+    this._seller.getValue().subscribe((res: boolean) => {
+      this.isloggedIn = res;
+      if (this.isloggedIn) {
+        this.reset();
+      } else {
+        this._seller.isLoggedInError.subscribe((res: boolean) => {
+          if (!res) {
+            this.errorMsg = 'Invalid Username/Password';
+          } else {
+            this.errorMsg = '';
+          }
+        });
+      }
+    });
   }
 
   showLogin() {

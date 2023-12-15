@@ -64,6 +64,7 @@
 
 <div *ngIf="showLoginSection" class="container" style="margin-top: 32px;width: 50%;">
     <div class="card">
+        <h5 *ngIf="errorMsg!=''" class="text-danger text-center">{{errorMsg}}</h5>
         <h5 class="card-header card-header-color">
             Seller Login
         </h5>
@@ -88,7 +89,8 @@
                             [ngClass]="{'is-invalid' : submitted && f2['password'].errors}">
                         <div *ngIf="submitted && f2['password'].errors" class="invalid-feedback">
                             <div *ngIf="f2['password'].errors['required']">Password is required!</div>
-                            <div *ngIf="f2['password'].errors['minlength']">minlength should be atleast 6 character long!
+                            <div *ngIf="f2['password'].errors['minlength']">minlength should be atleast 6 character
+                                long!
                             </div>
                         </div>
                     </div>
@@ -98,7 +100,7 @@
                         <button type="submit" class=" btn btn-success">Login</button>
                         <button type="button" class=" btn btn-danger" (click)="reset()">Reset</button>
                     </div>
-                    <p (click)="closeLogin();"  class="login-signup-link">Don't have an account?</p>
+                    <p (click)="closeLogin();" class="login-signup-link">Don't have an account?</p>
                 </div>
             </form>
         </div>
