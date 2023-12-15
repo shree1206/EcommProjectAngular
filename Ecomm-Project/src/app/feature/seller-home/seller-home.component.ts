@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SellerService } from '../seller-auth/services/seller.service';
 
 @Component({
   selector: 'app-seller-home',
   templateUrl: './seller-home.component.html',
   styleUrls: ['./seller-home.component.css']
 })
-export class SellerHomeComponent {
+export class SellerHomeComponent implements OnInit {
 
+  isloggedIn: any;
+  constructor(private _seller: SellerService) { }
+
+  ngOnInit() {
+    this._seller.getValue().subscribe((res) => {
+      this.isloggedIn = res;
+      console.log(res);
+    })
+  }
 }

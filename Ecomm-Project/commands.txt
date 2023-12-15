@@ -5,7 +5,8 @@ ng g s services/seller
 ng g class employee 
 ng g environments 
 ng serve --configuration=production
- 
+ng g guard seller-auth
+
 npm i sweetalert2  
 npm i ngx-toastr  
 npm i @angular/animations  

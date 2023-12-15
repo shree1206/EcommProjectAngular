@@ -20,6 +20,9 @@ export class SellerAuthComponent implements OnInit {
   password: string = '';
   signupForm: FormGroup;
   submitted: boolean = false;
+
+  isloggedIn: boolean = false;
+
   constructor(private _fb: FormBuilder, private _seller: SellerService, private _toastr: ToastrService, private _route: Router) {
     this.signupForm = this._fb.group({
       id: [0],
@@ -27,10 +30,16 @@ export class SellerAuthComponent implements OnInit {
       lname: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-    })
+    });
+
+    this._seller.getValue().subscribe((res) => {
+      this.isloggedIn = res;
+    });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this.isloggedIn);
+  }
 
   get f() {
     return this.signupForm.controls;
@@ -43,6 +52,7 @@ export class SellerAuthComponent implements OnInit {
     }
     this._seller.userSignup(data).subscribe((res: any) => {
       if (res) {
+        this._seller.setValue(true);
         this._toastr.success('Successfull Event Done', 'Success');
         Swal.fire('Successfully Data Saved')
         this.reset();
