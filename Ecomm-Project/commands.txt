@@ -1,0 +1,16 @@
+ng g m seller-home --routing
+ng g c page-not-found --skip-tests 
+ng g c seller-home --flat 
+ng g s services/seller  
+ng g class employee 
+ng g environments 
+ng serve --configuration=production
+ 
+npm i sweetalert2  
+npm i ngx-toastr  
+npm i @angular/animations  
+npm i font-awesome  
+npm i bootstrap
+npm install -g json-server   
+npx json-server --watch db.json
+   
