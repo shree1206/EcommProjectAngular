@@ -6,21 +6,41 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a class="navbar-brand text-white" routerLink="/">Ecomm Project</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" routerLink="seller-auth">Seller</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" routerLink="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" routerLink="logout">logout</a>
-                </li>
-            </ul>
-            <form class="d-flex">
+            <ng-container [ngSwitch]="menuType">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'default'">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" routerLink="seller-auth">Seller</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" routerLink="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page">Cart(0)</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngSwitchCase="'seller'">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page">Product List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page">Add Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page">Username</a>
+                    </li>
+                </ul>
+            </ng-container>
+            <form class="d-flex" *ngIf="menuType=='default'; else thenblock">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-success text-white" type="submit">Search</button>
             </form>
+            <ng-template #thenblock>
+                <i class="fa fa-power-off text-white logout-btn" aria-hidden="true" routerLink="logout"></i>
+            </ng-template>
+
         </div>
     </div>
 </nav>

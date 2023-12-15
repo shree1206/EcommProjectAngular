@@ -6,10 +6,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'home', pathMatch: 'full'
-  },
-  {
-    path: 'home', component: HomeComponent
+    path: '', component: HomeComponent
   },
   {
     path: 'seller-auth', loadChildren: () => import('./feature/seller-auth/seller-auth.module').then(m => m.SellerAuthModule)

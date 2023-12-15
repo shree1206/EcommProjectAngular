@@ -9,13 +9,11 @@ import { SellerService } from 'src/app/feature/seller-auth/services/seller.servi
 export class HomeComponent {
 
   constructor(private _seller: SellerService) { }
-  
-  ngOnInit() {
-    this._seller.checkLoogedInUser();
-  }
+
+  ngOnInit() { }
 
 
-  openGitHub() : void {
+  openGitHub(): void {
     window.open("https://github.com/shree1206/EcommProjectAngular", "_blank");
-}
+  }
 }
