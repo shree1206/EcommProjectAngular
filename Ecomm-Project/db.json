@@ -13,6 +13,20 @@
       "lname": "Arya",
       "email": "a@gmail.com",
       "password": "admin123"
+    },
+    {
+      "id": 3,
+      "fname": "p",
+      "lname": "p",
+      "email": "p@hh",
+      "password": "pppppp"
+    },
+    {
+      "id": 4,
+      "fname": "p",
+      "lname": "p",
+      "email": "p@kk",
+      "password": "pppppp"
     }
   ]
 }

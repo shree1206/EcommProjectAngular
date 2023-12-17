@@ -5,27 +5,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
-  {
-    path: '', component: HomeComponent
-  },
-  {
-    path: 'seller-auth', loadChildren: () => import('./feature/seller-auth/seller-auth.module').then(m => m.SellerAuthModule)
-  },
-  {
-    path: 'seller-home', loadChildren: () => import('./feature/seller-home/seller-home.module').then(m => m.SellerHomeModule)
-  },
-  {
-    path: 'seller-add-product', loadChildren: () => import('./feature/seller-add-product/seller-add-product.module').then(m => m.SellerAddProductModule)
-  },
-  {
-    path: 'logout', component: LogoutComponent
-  },
-  {
-    path: 'page-not-found', component: PageNotFoundComponent
-  },
-  {
-    path: '**', redirectTo: 'page-not-found'
-  },
+  { path: '', component: HomeComponent },
+  { path: 'seller', loadChildren: () => import('./feature/seller/seller.module').then(m => m.SellerModule) },
+  { path: 'logout', component: LogoutComponent },
+  { path: 'page-not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: 'page-not-found' }
 ];
 
 @NgModule({

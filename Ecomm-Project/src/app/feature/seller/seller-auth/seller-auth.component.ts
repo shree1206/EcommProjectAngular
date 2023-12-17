@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { signupUser } from 'src/app/types/signupUser.interface';
-import { SellerService } from './services/seller.service';
+import { SellerService } from '../services/seller.service';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -45,8 +45,10 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.isloggedIn);
-    this._seller.checkLoogedInUser();
+    console.log('SellerAuthComponent');
+    if (this.isloggedIn) {
+      this._route.navigate(['seller/seller-home']);
+    }
   }
 
   get f() {
@@ -62,6 +64,7 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
     if (this.signupForm.invalid) {
       return;
     }
+    console.log(data);
     this._seller.userSignup(data).subscribe((res: any) => {
       if (res) {
         this._seller.setValue(true);
@@ -69,7 +72,7 @@ export class SellerAuthComponent implements OnInit, OnDestroy {
         Swal.fire('Successfully Data Saved')
         this.reset();
         localStorage.setItem('seller', JSON.stringify(res.body));
-        this._route.navigate(['seller-home']);
+        this._route.navigate(['seller/seller-home']);
       }
     }, error => {
       this._toastr.error(error.message, 'Error');

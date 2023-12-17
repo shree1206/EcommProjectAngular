@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
-import { SellerService } from '../feature/seller-auth/services/seller.service';
+import { SellerService } from '../feature/seller/services/seller.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class sellerAuthGuardService {
-  constructor(public _sellerService: SellerService, public router: Router) { }
+  constructor(public _sellerService: SellerService, public router: Router) { 
+    console.log('Auth guard called')
+  }
 
   isloggedIn: boolean = false;
   canActivate(route: ActivatedRouteSnapshot): boolean {
@@ -14,7 +16,7 @@ export class sellerAuthGuardService {
       this.isloggedIn = res;
     });
     if (!this.isloggedIn) {
-      this.router.navigate(['seller-auth']);
+      this.router.navigate(['/seller'])
       return false;
     }
     return true;

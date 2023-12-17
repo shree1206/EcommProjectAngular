@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SellerService } from 'src/app/feature/seller-auth/services/seller.service';
+import { SellerService } from 'src/app/feature/seller/services/seller.service';
 
 @Component({
   selector: 'app-home',

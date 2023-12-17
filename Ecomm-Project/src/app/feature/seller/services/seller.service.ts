@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LoginUser, signupUser } from 'src/app/types/signupUser.interface';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -29,14 +29,10 @@ export class SellerService {
   }
 
   getValue() {
-    return this.isLoggedIn.asObservable();
-  }
-
-  checkLoogedInUser() {
     if (localStorage.getItem('seller')) {
-      this.isLoggedIn.next(true);
-      this._route.navigate(['seller-home']);
+      return of(true);
     }
+    return this.isLoggedIn.asObservable();
   }
 
   userLogin(data: LoginUser) {
@@ -46,7 +42,7 @@ export class SellerService {
         this._toastr.success('Successfull Event Done', 'Success');
         Swal.fire('Successfully LoggedIn')
         localStorage.setItem('seller', JSON.stringify(res.body));
-        this._route.navigate(['seller-home']);
+        this._route.navigate(['seller/seller-home']);
         this.isLoggedInError.emit(true);
       } else {
         this.isLoggedInError.emit(false);
@@ -54,8 +50,9 @@ export class SellerService {
     });
   }
 
-  userLogout(){
+  userLogout() {
     localStorage.removeItem('seller');
+    this.setValue(false)
     this._toastr.success('Successfull Logout', 'Success');
     Swal.fire('Successfully Logged Out');
     this._route.navigate(['/']);

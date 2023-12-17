@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SellerService } from '../seller-auth/services/seller.service';
 
 @Component({
   selector: 'app-seller-home',
@@ -8,8 +7,9 @@ import { SellerService } from '../seller-auth/services/seller.service';
 })
 export class SellerHomeComponent implements OnInit {
 
-  isloggedIn: any;
-  constructor(private _seller: SellerService) { }
+  constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log('SellerHomeComponent');
+  }
 }

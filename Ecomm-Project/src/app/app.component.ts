@@ -1,5 +1,5 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
-import { SellerService } from './feature/seller-auth/services/seller.service';
+import { SellerService } from './feature/seller/services/seller.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +12,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (isDevMode()) {
-      console.log('Development!');
     } else {
-      console.log('Production!');
     }
   }
 }

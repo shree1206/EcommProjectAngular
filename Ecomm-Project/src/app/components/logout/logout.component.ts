@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SellerService } from 'src/app/feature/seller-auth/services/seller.service';
+import { SellerService } from 'src/app/feature/seller/services/seller.service';
 
 @Component({
   selector: 'app-logout',
